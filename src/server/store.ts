@@ -18,3 +18,14 @@ export function addTask(title: string): Task {
   tasks.push(task);
   return task;
 }
+
+export function toggleTask(id: number): Task | undefined {
+  const task = tasks.find((t) => t.id === id);
+
+  if (!task) {
+    return undefined;
+  }
+
+  task.completed = !task.completed;
+  return task;
+}
