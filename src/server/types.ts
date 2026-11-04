@@ -4,3 +4,5 @@ export type Task = {
   completed: boolean;
   createdAt: string;
 };
+
+export type Filter = "all" | "active" | "completed";
