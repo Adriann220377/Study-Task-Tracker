@@ -1,5 +1,5 @@
 import express from "express";
-import { addTask, getTasks, toggleTask } from "./store";
+import { addTask, deleteTask, getTasks, toggleTask } from "./store";
 
 const app = express();
 const PORT = 3000;
@@ -36,6 +36,18 @@ app.patch("/api/tasks/:id/toggle", (req, res) => {
   }
 
   res.json(task);
+});
+
+app.delete("/api/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const deleted = deleteTask(id);
+
+  if (!deleted) {
+    res.status(404).json({ error: "Task not found" });
+    return;
+  }
+
+  res.status(204).send();
 });
 
 app.listen(PORT, () => {
