@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Adriann220377/Study-Task-Tracker/issues"
   },
-  "homepage": "https://github.com/Adriann220377/Study-Task-Tracker#readme"
+  "homepage": "https://github.com/Adriann220377/Study-Task-Tracker#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
 }
