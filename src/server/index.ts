@@ -1,5 +1,5 @@
 import express from "express";
-import { addTask, getTasks } from "./store";
+import { addTask, getTasks, toggleTask } from "./store";
 
 const app = express();
 const PORT = 3000;
@@ -24,6 +24,18 @@ app.post("/api/tasks", (req, res) => {
 
   const task = addTask(title.trim());
   res.status(201).json(task);
+});
+
+app.patch("/api/tasks/:id/toggle", (req, res) => {
+  const id = Number(req.params.id);
+  const task = toggleTask(id);
+
+  if (!task) {
+    res.status(404).json({ error: "Task not found" });
+    return;
+  }
+
+  res.json(task);
 });
 
 app.listen(PORT, () => {
