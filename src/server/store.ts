@@ -29,3 +29,14 @@ export function toggleTask(id: number): Task | undefined {
   task.completed = !task.completed;
   return task;
 }
+
+export function deleteTask(id: number): boolean {
+  const index = tasks.findIndex((t) => t.id === id);
+
+  if (index === -1) {
+    return false;
+  }
+
+  tasks.splice(index, 1);
+  return true;
+}
