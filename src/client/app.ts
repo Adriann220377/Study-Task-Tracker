@@ -27,6 +27,16 @@ async function init(): Promise<void> {
   console.log(tasks);
 }
 
+function renderTasks(tasks: Task[]): void {
+  taskList.replaceChildren();
+
+  for (const task of tasks) {
+    const item = document.createElement("li");
+    item.textContent = task.title;
+    taskList.appendChild(item);
+  }
+}
+
 init();
 
 export {};
