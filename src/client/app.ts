@@ -49,7 +49,10 @@ function renderTasks(tasks: Task[]): void {
 
   const title = document.createElement("span");
   title.textContent = task.title;
-
+    if (task.completed) {
+    title.className = "text-slate-400 line-through";
+    }
+    
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.checked = task.completed;
