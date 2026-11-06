@@ -1,9 +1,17 @@
-import type { Task } from "./types";
+import type { Filter, Task } from "./types";
 
 const tasks: Task[] = [];
 let nextId = 1;
 
-export function getTasks(): Task[] {
+export function getTasks(filter: Filter = "all"): Task[] {
+  if (filter === "active") {
+    return tasks.filter((t) => !t.completed);
+  }
+
+  if (filter === "completed") {
+    return tasks.filter((t) => t.completed);
+  }
+
   return tasks;
 }
 
