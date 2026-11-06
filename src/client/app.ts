@@ -22,6 +22,14 @@ async function loadTasks(): Promise<Task[]> {
   return response.json();
 }
 
+async function toggleTaskRequest(id: number): Promise<void> {
+  await fetch(`/api/tasks/${id}/toggle`, { method: "PATCH" });
+}
+
+async function deleteTaskRequest(id: number): Promise<void> {
+  await fetch(`/api/tasks/${id}`, { method: "DELETE" });
+}
+
 async function init(): Promise<void> {
   const tasks = await loadTasks();
   renderTasks(tasks);
