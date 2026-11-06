@@ -44,10 +44,14 @@ function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
 
   for (const task of tasks) {
-    const item = document.createElement("li");
-    item.textContent = task.title;
-    item.className = "rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm";
-    taskList.appendChild(item);
+  const item = document.createElement("li");
+  item.className = "flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm";
+
+  const title = document.createElement("span");
+  title.textContent = task.title;
+
+  item.appendChild(title);
+  taskList.appendChild(item);
   }
 }
 
