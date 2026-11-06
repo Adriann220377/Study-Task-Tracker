@@ -16,6 +16,8 @@ function getElement<T extends HTMLElement>(selector: string): T {
 }
 
 const taskList = getElement<HTMLUListElement>("#task-list");
+const taskForm = getElement<HTMLFormElement>("#task-form");
+const taskInput = getElement<HTMLInputElement>("#task-input");
 
 async function loadTasks(): Promise<Task[]> {
   const response = await fetch("/api/tasks");
@@ -29,6 +31,13 @@ async function toggleTaskRequest(id: number): Promise<void> {
 async function deleteTaskRequest(id: number): Promise<void> {
   await fetch(`/api/tasks/${id}`, { method: "DELETE" });
 }
+async function addTaskRequest(title: string): Promise<void> {
+  await fetch("/api/tasks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title }),
+  });
+}
 
 async function refresh(): Promise<void> {
   const tasks = await loadTasks();
@@ -38,6 +47,8 @@ async function refresh(): Promise<void> {
 async function init(): Promise<void> {
   await refresh();
 }
+
+
 
 
 function renderTasks(tasks: Task[]): void {
