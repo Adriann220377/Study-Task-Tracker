@@ -61,8 +61,14 @@ function renderTasks(tasks: Task[]): void {
     await toggleTaskRequest(task.id);
     await refresh();
   });
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.addEventListener("click", async () => {
+    await deleteTaskRequest(task.id);
+    await refresh();
+  });
 
-  item.append(checkbox, title);
+  item.append(checkbox, title, deleteButton);
   taskList.appendChild(item);
   }
 }
