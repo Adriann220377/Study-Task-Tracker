@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+@theme {
+  --color-plum-950: #190019;
+  --color-plum-900: #2b124c;
+  --color-plum-700: #522b5b;
+  --color-plum-500: #854f6c;
+  --color-blush-300: #dfb6b2;
+  --color-blush-100: #fbe4db;
+}
