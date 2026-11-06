@@ -45,11 +45,21 @@ async function refresh(): Promise<void> {
 }
 
 async function init(): Promise<void> {
+  taskForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const title = taskInput.value.trim();
+    if (title === "") {
+      return;
+    }
+
+    await addTaskRequest(title);
+    taskInput.value = "";
+    await refresh();
+  });
+
   await refresh();
 }
-
-
-
 
 function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
