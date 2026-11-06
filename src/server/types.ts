@@ -6,3 +6,7 @@ export type Task = {
 };
 
 export type Filter = "all" | "active" | "completed";
+
+export function isFilter(value: unknown): value is Filter {
+  return value === "all" || value === "active" || value === "completed";
+}
