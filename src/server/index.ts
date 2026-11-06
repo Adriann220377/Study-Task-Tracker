@@ -1,5 +1,6 @@
 import express from "express";
 import { addTask, deleteTask, getTasks, toggleTask } from "./store";
+import { isFilter } from "./types";
 
 const app = express();
 const PORT = 3000;
@@ -11,8 +12,15 @@ app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.get("/api/tasks", (_req, res) => {
-  res.json(getTasks());
+app.get("/api/tasks", (req, res) => {
+  const filter = req.query.filter ?? "all";
+
+  if (!isFilter(filter)) {
+    res.status(400).json({ error: "Filter must be all, active or completed" });
+    return;
+  }
+
+  res.json(getTasks(filter));
 });
 
 app.post("/api/tasks", (req, res) => {
