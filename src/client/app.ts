@@ -30,10 +30,15 @@ async function deleteTaskRequest(id: number): Promise<void> {
   await fetch(`/api/tasks/${id}`, { method: "DELETE" });
 }
 
-async function init(): Promise<void> {
+async function refresh(): Promise<void> {
   const tasks = await loadTasks();
   renderTasks(tasks);
 }
+
+async function init(): Promise<void> {
+  await refresh();
+}
+
 
 function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
