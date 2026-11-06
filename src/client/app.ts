@@ -50,7 +50,16 @@ function renderTasks(tasks: Task[]): void {
   const title = document.createElement("span");
   title.textContent = task.title;
 
-  item.appendChild(title);
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = task.completed;
+  checkbox.className = "h-4 w-4 cursor-pointer";
+  checkbox.addEventListener("change", async () => {
+    await toggleTaskRequest(task.id);
+    await refresh();
+  });
+
+  item.append(checkbox, title);
   taskList.appendChild(item);
   }
 }
