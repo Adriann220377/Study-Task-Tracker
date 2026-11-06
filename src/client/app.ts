@@ -24,7 +24,7 @@ async function loadTasks(): Promise<Task[]> {
 
 async function init(): Promise<void> {
   const tasks = await loadTasks();
-  console.log(tasks);
+  renderTasks(tasks);
 }
 
 function renderTasks(tasks: Task[]): void {
