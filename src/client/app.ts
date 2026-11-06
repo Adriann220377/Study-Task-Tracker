@@ -63,6 +63,7 @@ function renderTasks(tasks: Task[]): void {
   });
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
+  deleteButton.className = "ml-auto cursor-pointer rounded-lg px-3 py-1 text-sm font-medium text-red-600 hover:bg-red-50";
   deleteButton.addEventListener("click", async () => {
     await deleteTaskRequest(task.id);
     await refresh();
