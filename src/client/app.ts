@@ -94,6 +94,13 @@ function renderFilters(): void {
 
 function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
+  if (tasks.length === 0) {
+    const empty = document.createElement("li");
+    empty.className = "py-6 text-center text-slate-500";
+    empty.textContent = "No tasks here yet.";
+    taskList.appendChild(empty);
+    return;
+  }
 
   for (const task of tasks) {
   const item = document.createElement("li");
