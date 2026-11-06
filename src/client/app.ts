@@ -33,6 +33,7 @@ function renderTasks(tasks: Task[]): void {
   for (const task of tasks) {
     const item = document.createElement("li");
     item.textContent = task.title;
+    item.className = "rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm";
     taskList.appendChild(item);
   }
 }
