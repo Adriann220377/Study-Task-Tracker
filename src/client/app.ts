@@ -25,6 +25,7 @@ const taskList = getElement<HTMLUListElement>("#task-list");
 const taskForm = getElement<HTMLFormElement>("#task-form");
 const taskInput = getElement<HTMLInputElement>("#task-input");
 let currentFilter: Filter = "all";
+const filterButtons = document.querySelectorAll<HTMLButtonElement>("#filters button");
 
 async function loadTasks(filter: Filter): Promise<Task[]> {
   const response = await fetch(`/api/tasks?filter=${filter}`);
@@ -64,7 +65,18 @@ async function init(): Promise<void> {
     taskInput.value = "";
     await refresh();
   });
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const value = button.dataset.filter;
 
+      if (!isFilter(value)) {
+        return;
+      }
+
+      currentFilter = value;
+      await refresh();
+    });
+  });
   await refresh();
 }
 
