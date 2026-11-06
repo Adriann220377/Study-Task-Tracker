@@ -26,8 +26,8 @@ const taskForm = getElement<HTMLFormElement>("#task-form");
 const taskInput = getElement<HTMLInputElement>("#task-input");
 let currentFilter: Filter = "all";
 
-async function loadTasks(): Promise<Task[]> {
-  const response = await fetch("/api/tasks");
+async function loadTasks(filter: Filter): Promise<Task[]> {
+  const response = await fetch(`/api/tasks?filter=${filter}`);
   return response.json();
 }
 
@@ -47,7 +47,7 @@ async function addTaskRequest(title: string): Promise<void> {
 }
 
 async function refresh(): Promise<void> {
-  const tasks = await loadTasks();
+  const tasks = await loadTasks(currentFilter);
   renderTasks(tasks);
 }
 
