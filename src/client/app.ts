@@ -5,6 +5,12 @@ type Task = {
   createdAt: string;
 };
 
+type Filter = "all" | "active" | "completed";
+
+function isFilter(value: unknown): value is Filter {
+  return value === "all" || value === "active" || value === "completed";
+}
+
 function getElement<T extends HTMLElement>(selector: string): T {
   const element = document.querySelector<T>(selector);
 
@@ -18,6 +24,7 @@ function getElement<T extends HTMLElement>(selector: string): T {
 const taskList = getElement<HTMLUListElement>("#task-list");
 const taskForm = getElement<HTMLFormElement>("#task-form");
 const taskInput = getElement<HTMLInputElement>("#task-input");
+let currentFilter: Filter = "all";
 
 async function loadTasks(): Promise<Task[]> {
   const response = await fetch("/api/tasks");
