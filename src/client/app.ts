@@ -50,6 +50,7 @@ async function addTaskRequest(title: string): Promise<void> {
 async function refresh(): Promise<void> {
   const tasks = await loadTasks(currentFilter);
   renderTasks(tasks);
+  renderFilters();
 }
 
 async function init(): Promise<void> {
@@ -78,6 +79,17 @@ async function init(): Promise<void> {
     });
   });
   await refresh();
+}
+
+const baseFilterClasses = "cursor-pointer rounded-full border px-4 py-1 text-sm font-medium";
+const selectedFilterClasses = "border-blue-600 bg-blue-600 text-white";
+const unselectedFilterClasses = "border-slate-300 bg-white text-slate-700 hover:bg-slate-200";
+
+function renderFilters(): void {
+  filterButtons.forEach((button) => {
+    const isSelected = button.dataset.filter === currentFilter;
+    button.className = `${baseFilterClasses} ${isSelected ? selectedFilterClasses : unselectedFilterClasses}`;
+  });
 }
 
 function renderTasks(tasks: Task[]): void {
