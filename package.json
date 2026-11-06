@@ -11,7 +11,8 @@
     "dev:css": "tailwindcss -i ./src/client/input.css -o ./public/styles.css --watch",
     "build:client": "tsc -p tsconfig.client.json",
     "dev:client": "tsc -p tsconfig.client.json --watch",
-    "dev:all": "concurrently -n server,css,client \"npm:dev\" \"npm:dev:css\" \"npm:dev:client\""
+    "dev:all": "concurrently -n server,css,client \"npm:dev\" \"npm:dev:css\" \"npm:dev:client\"",
+    "build:all": "npm run build && npm run build:css && npm run build:client"
   },
   "repository": {
     "type": "git",
