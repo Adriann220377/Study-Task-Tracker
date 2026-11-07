@@ -106,7 +106,7 @@ function renderTasks(tasks: Task[]): void {
 
   for (const task of tasks) {
     const item = document.createElement("li");
-    item.className = "flex flex-col justify-between gap-6 rounded-2xl border border-plum-700 bg-plum-900 p-5";
+    item.className = "flex flex-col justify-between gap-6 rounded-2xl border border-plum-700 bg-plum-900 p-5 transition duration-200 hover:-translate-y-1 hover:border-plum-500 hover:shadow-xl hover:shadow-black/40";
 
     const title = document.createElement("span");
     title.textContent = task.title;
