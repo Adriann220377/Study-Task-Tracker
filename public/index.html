@@ -6,8 +6,9 @@
     <title>Study Task Tracker</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
-    <body class="min-h-screen bg-plum-950 text-blush-100">
-    <main class="mx-auto max-w-xl p-6">
+  <body class="min-h-screen bg-plum-950 text-blush-100">
+    <main class="mx-auto max-w-5xl p-6">
+    <div class="mx-auto max-w-xl">
       <h1 class="text-4xl font-bold tracking-tight text-blush-100">Study Task Tracker</h1>
       <p class="mb-8 mt-2 text-blush-300">Plan it, tick it off, remember it.</p>
 
@@ -21,7 +22,7 @@
         <button data-filter="active" class="cursor-pointer rounded-full border border-slate-300 bg-white px-4 py-1 text-sm font-medium text-slate-700 hover:bg-slate-200">Active</button>
         <button data-filter="completed" class="cursor-pointer rounded-full border border-slate-300 bg-white px-4 py-1 text-sm font-medium text-slate-700 hover:bg-slate-200">Completed</button>
       </div>
-
+    </div>
       <ul id="task-list" class="space-y-2"></ul>
     </main>
     <script type="module" src="/app.js"></script>
