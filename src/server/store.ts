@@ -15,10 +15,11 @@ export function getTasks(filter: Filter = "all"): Task[] {
   return tasks;
 }
 
-export function addTask(title: string): Task {
+export function addTask(title: string, notes = ""): Task {
   const task: Task = {
     id: nextId,
     title,
+    notes,
     completed: false,
     createdAt: new Date().toISOString(),
   };
