@@ -138,7 +138,7 @@ function renderTasks(tasks: Task[]): void {
 
   for (const task of tasks) {
     const item = document.createElement("li");
-    item.className = `${baseCardClasses} ${task.completed ? doneCardClasses : openCardClasses}`;
+    item.className = `${baseCardClasses} ${task.completed ? doneCardClasses : openCardClasses} ${getSizeClasses(task)}`;
 
     const title = document.createElement("span");
     title.textContent = task.title;
