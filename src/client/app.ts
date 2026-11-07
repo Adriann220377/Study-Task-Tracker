@@ -117,6 +117,7 @@ const baseCardClasses = "flex flex-col justify-between gap-6 rounded-2xl border 
 const openCardClasses = "border-plum-700 bg-plum-900 hover:border-plum-500";
 const doneCardClasses = "border-plum-700/50 bg-plum-900/50 hover:border-plum-500";
 
+//* RENDERING TASKS *//
 function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
 
@@ -167,7 +168,18 @@ function renderTasks(tasks: Task[]): void {
     footer.className = "flex items-center justify-between";
     footer.append(date, deleteButton);
 
-    item.append(header, footer);
+        const body = document.createElement("div");
+    body.className = "flex flex-col gap-3";
+    body.append(header);
+
+    if (task.notes !== "") {
+      const notes = document.createElement("p");
+      notes.textContent = task.notes;
+      notes.className = "whitespace-pre-wrap break-words text-sm leading-relaxed text-blush-300";
+      body.append(notes);
+    }
+
+    item.append(body, footer);
     taskList.appendChild(item);
   }
 }
