@@ -22,6 +22,7 @@ function getElement<T extends HTMLElement>(selector: string): T {
 }
 
 const taskList = getElement<HTMLUListElement>("#task-list");
+const taskCounter = getElement<HTMLParagraphElement>("#task-counter");
 const taskForm = getElement<HTMLFormElement>("#task-form");
 const taskInput = getElement<HTMLInputElement>("#task-input");
 let currentFilter: Filter = "all";
@@ -48,9 +49,13 @@ async function addTaskRequest(title: string): Promise<void> {
 }
 
 async function refresh(): Promise<void> {
-  const tasks = await loadTasks(currentFilter);
+  const [tasks, activeTasks] = await Promise.all([
+    loadTasks(currentFilter),
+    loadTasks("active"),
+  ]);
   renderTasks(tasks);
   renderFilters();
+  renderCounter(activeTasks.length);
 }
 
 async function init(): Promise<void> {
@@ -99,6 +104,11 @@ function formatDate(iso: string): string {
     day: "numeric",
     month: "short",
   });
+}
+
+function renderCounter(activeCount: number): void {
+  const word = activeCount === 1 ? "task" : "tasks";
+  taskCounter.textContent = `${activeCount} ${word} left`;
 }
 
 const baseCardClasses = "flex flex-col justify-between gap-6 rounded-2xl border p-5 transition duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40";
