@@ -97,7 +97,7 @@ function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
   if (tasks.length === 0) {
     const empty = document.createElement("li");
-    empty.className = "py-6 text-center text-blush-300/70";
+    empty.className = "col-span-full py-6 text-center text-blush-300/70";
     empty.textContent = "No tasks here yet.";
     taskList.appendChild(empty);
     return;
