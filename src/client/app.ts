@@ -93,6 +93,10 @@ function renderFilters(): void {
   });
 }
 
+const baseCardClasses = "flex flex-col justify-between gap-6 rounded-2xl border p-5 transition duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40";
+const openCardClasses = "border-plum-700 bg-plum-900 hover:border-plum-500";
+const doneCardClasses = "border-plum-700/50 bg-plum-900/50 hover:border-plum-500";
+
 function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
 
@@ -106,7 +110,7 @@ function renderTasks(tasks: Task[]): void {
 
   for (const task of tasks) {
     const item = document.createElement("li");
-    item.className = "flex flex-col justify-between gap-6 rounded-2xl border border-plum-700 bg-plum-900 p-5 transition duration-200 hover:-translate-y-1 hover:border-plum-500 hover:shadow-xl hover:shadow-black/40";
+    item.className = `${baseCardClasses} ${task.completed ? doneCardClasses : openCardClasses}`;
 
     const title = document.createElement("span");
     title.textContent = task.title;
