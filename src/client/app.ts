@@ -105,18 +105,18 @@ function renderTasks(tasks: Task[]): void {
 
   for (const task of tasks) {
   const item = document.createElement("li");
-  item.className = "flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 shadow-sm";
+  item.className = "flex items-center gap-3 rounded-xl border border-plum-700 bg-plum-900 px-4 py-3";
 
   const title = document.createElement("span");
   title.textContent = task.title;
     if (task.completed) {
-    title.className = "text-slate-400 line-through";
+    title.className = "text-blush-300/50 line-through";
     }
     
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.checked = task.completed;
-  checkbox.className = "h-4 w-4 cursor-pointer";
+  checkbox.className = "h-4 w-4 cursor-pointer accent-blush-300";
   checkbox.addEventListener("change", async () => {
     await toggleTaskRequest(task.id);
     await refresh();
