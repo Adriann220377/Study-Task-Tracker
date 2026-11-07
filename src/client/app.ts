@@ -97,7 +97,7 @@ function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
   if (tasks.length === 0) {
     const empty = document.createElement("li");
-    empty.className = "py-6 text-center text-slate-500";
+    empty.className = "py-6 text-center text-blush-300/70";
     empty.textContent = "No tasks here yet.";
     taskList.appendChild(empty);
     return;
@@ -123,7 +123,7 @@ function renderTasks(tasks: Task[]): void {
   });
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
-  deleteButton.className = "ml-auto cursor-pointer rounded-lg px-3 py-1 text-sm font-medium text-red-600 hover:bg-red-50";
+  deleteButton.className = "ml-auto cursor-pointer rounded-lg px-3 py-1 text-sm font-medium text-blush-300 transition hover:bg-plum-700 hover:text-blush-100";
   deleteButton.addEventListener("click", async () => {
     await deleteTaskRequest(task.id);
     await refresh();
