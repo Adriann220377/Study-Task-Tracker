@@ -5,7 +5,10 @@ A small app for tracking study tasks. Add tasks, tick them off, delete them, and
 ## Features
 
 - Add, complete and delete tasks
+- Optional notes on each task (up to 500 characters)
 - Filter by All, Active or Completed
+- Live "tasks left" counter
+- Responsive grid where longer tasks get wider cards
 - Express backend with a small JSON API
 - Page styled with Tailwind and written in plain TypeScript (no framework)
 
