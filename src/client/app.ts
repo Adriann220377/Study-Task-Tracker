@@ -82,6 +82,7 @@ async function init(): Promise<void> {
   await refresh();
 }
 
+
 const baseFilterClasses = "cursor-pointer rounded-full border px-4 py-1 text-sm font-medium transition";
 const selectedFilterClasses = "border-blush-100 bg-blush-100 text-plum-950";
 const unselectedFilterClasses = "border-plum-700 bg-plum-900 text-blush-300 hover:bg-plum-700";
@@ -90,6 +91,13 @@ function renderFilters(): void {
   filterButtons.forEach((button) => {
     const isSelected = button.dataset.filter === currentFilter;
     button.className = `${baseFilterClasses} ${isSelected ? selectedFilterClasses : unselectedFilterClasses}`;
+  });
+}
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
   });
 }
 
