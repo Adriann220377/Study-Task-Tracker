@@ -78,12 +78,13 @@ async function init(): Promise<void> {
       await refresh();
     });
   });
+  renderFilters();
   await refresh();
 }
 
-const baseFilterClasses = "cursor-pointer rounded-full border px-4 py-1 text-sm font-medium";
-const selectedFilterClasses = "border-blue-600 bg-blue-600 text-white";
-const unselectedFilterClasses = "border-slate-300 bg-white text-slate-700 hover:bg-slate-200";
+const baseFilterClasses = "cursor-pointer rounded-full border px-4 py-1 text-sm font-medium transition";
+const selectedFilterClasses = "border-blush-100 bg-blush-100 text-plum-950";
+const unselectedFilterClasses = "border-plum-700 bg-plum-900 text-blush-300 hover:bg-plum-700";
 
 function renderFilters(): void {
   filterButtons.forEach((button) => {
