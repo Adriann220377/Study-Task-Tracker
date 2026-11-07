@@ -25,13 +25,19 @@ app.get("/api/tasks", (req, res) => {
 
 app.post("/api/tasks", (req, res) => {
   const title = req.body?.title;
+  const notes = req.body?.notes ?? "";
 
   if (typeof title !== "string" || title.trim() === "") {
     res.status(400).json({ error: "Title is required" });
     return;
   }
 
-  const task = addTask(title.trim());
+  if (typeof notes !== "string" || notes.length > 500) {
+    res.status(400).json({ error: "Notes must be text of 500 characters or fewer" });
+    return;
+  }
+
+  const task = addTask(title.trim(), notes.trim());
   res.status(201).json(task);
 });
 
