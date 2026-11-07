@@ -113,11 +113,18 @@ function renderCounter(activeCount: number): void {
   taskCounter.textContent = `${activeCount} ${word} left`;
 }
 
+const wideCardLength = 120;
+
+function getSizeClasses(task: Task): string {
+  const length = task.title.length + task.notes.length;
+  return length > wideCardLength ? "sm:col-span-2" : "";
+}
+
+//* RENDERING TASKS *//
 const baseCardClasses = "flex flex-col justify-between gap-6 rounded-2xl border p-5 transition duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/40";
 const openCardClasses = "border-plum-700 bg-plum-900 hover:border-plum-500";
 const doneCardClasses = "border-plum-700/50 bg-plum-900/50 hover:border-plum-500";
 
-//* RENDERING TASKS *//
 function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
 
