@@ -26,6 +26,7 @@ const taskList = getElement<HTMLUListElement>("#task-list");
 const taskCounter = getElement<HTMLParagraphElement>("#task-counter");
 const taskForm = getElement<HTMLFormElement>("#task-form");
 const taskInput = getElement<HTMLInputElement>("#task-input");
+const taskNotes = getElement<HTMLTextAreaElement>("#task-notes");
 let currentFilter: Filter = "all";
 const filterButtons = document.querySelectorAll<HTMLButtonElement>("#filters button");
 
@@ -41,11 +42,11 @@ async function toggleTaskRequest(id: number): Promise<void> {
 async function deleteTaskRequest(id: number): Promise<void> {
   await fetch(`/api/tasks/${id}`, { method: "DELETE" });
 }
-async function addTaskRequest(title: string): Promise<void> {
+async function addTaskRequest(title: string, notes: string): Promise<void> {
   await fetch("/api/tasks", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title }),
+    body: JSON.stringify({ title, notes }),
   });
 }
 
@@ -67,9 +68,9 @@ async function init(): Promise<void> {
     if (title === "") {
       return;
     }
-
-    await addTaskRequest(title);
+    await addTaskRequest(title, taskNotes.value.trim());
     taskInput.value = "";
+    taskNotes.value = "";
     await refresh();
   });
   filterButtons.forEach((button) => {
