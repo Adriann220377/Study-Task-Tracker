@@ -95,6 +95,7 @@ function renderFilters(): void {
 
 function renderTasks(tasks: Task[]): void {
   taskList.replaceChildren();
+
   if (tasks.length === 0) {
     const empty = document.createElement("li");
     empty.className = "col-span-full py-6 text-center text-blush-300/70";
@@ -104,33 +105,42 @@ function renderTasks(tasks: Task[]): void {
   }
 
   for (const task of tasks) {
-  const item = document.createElement("li");
-  item.className = "flex items-center gap-3 rounded-xl border border-plum-700 bg-plum-900 px-4 py-3";
+    const item = document.createElement("li");
+    item.className = "flex flex-col justify-between gap-6 rounded-2xl border border-plum-700 bg-plum-900 p-5";
 
-  const title = document.createElement("span");
-  title.textContent = task.title;
-    if (task.completed) {
-    title.className = "text-blush-300/50 line-through";
-    }
-    
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.checked = task.completed;
-  checkbox.className = "h-4 w-4 cursor-pointer accent-blush-300";
-  checkbox.addEventListener("change", async () => {
-    await toggleTaskRequest(task.id);
-    await refresh();
-  });
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "Delete";
-  deleteButton.className = "ml-auto cursor-pointer rounded-lg px-3 py-1 text-sm font-medium text-blush-300 transition hover:bg-plum-700 hover:text-blush-100";
-  deleteButton.addEventListener("click", async () => {
-    await deleteTaskRequest(task.id);
-    await refresh();
-  });
+    const title = document.createElement("span");
+    title.textContent = task.title;
+    title.className = task.completed
+      ? "text-lg font-medium leading-snug text-blush-300/50 line-through"
+      : "text-lg font-medium leading-snug text-blush-100";
 
-  item.append(checkbox, title, deleteButton);
-  taskList.appendChild(item);
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.completed;
+    checkbox.className = "mt-1 h-4 w-4 shrink-0 cursor-pointer accent-blush-300";
+    checkbox.addEventListener("change", async () => {
+      await toggleTaskRequest(task.id);
+      await refresh();
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.className = "ml-auto cursor-pointer rounded-lg px-3 py-1 text-sm font-medium text-blush-300 transition hover:bg-plum-700 hover:text-blush-100";
+    deleteButton.addEventListener("click", async () => {
+      await deleteTaskRequest(task.id);
+      await refresh();
+    });
+
+    const header = document.createElement("div");
+    header.className = "flex items-start gap-3";
+    header.append(checkbox, title);
+
+    const footer = document.createElement("div");
+    footer.className = "flex items-center justify-between";
+    footer.append(deleteButton);
+
+    item.append(header, footer);
+    taskList.appendChild(item);
   }
 }
 
