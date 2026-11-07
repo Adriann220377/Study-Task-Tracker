@@ -55,7 +55,7 @@ src/server/    index.ts, store.ts and types.ts (backend)
 | Method | Path | What it does |
 | --- | --- | --- |
 | GET | `/api/tasks` | Lists tasks. Add `?filter=` with `all`, `active` or `completed` |
-| POST | `/api/tasks` | Creates a task from a JSON body like `{ "title": "..." }` |
+| POST | `/api/tasks` | Creates a task from a JSON body like `{ "title": "...", "notes": "..." }`. Notes are optional (max 500 characters) |
 | PATCH | `/api/tasks/:id/toggle` | Flips a task between done and not done |
 | DELETE | `/api/tasks/:id` | Deletes a task |
 | GET | `/api/health` | Returns `{ "status": "ok" }` |
