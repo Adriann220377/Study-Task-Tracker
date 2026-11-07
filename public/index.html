@@ -17,11 +17,12 @@
         <button type="submit" class="cursor-pointer rounded-xl bg-blush-100 px-5 py-3 font-semibold text-plum-950 transition hover:bg-blush-300">Add</button>
       </form>
 
-      <div id="filters" class="mb-8 flex justify-center gap-2">
+      <div id="filters" class="mb-4 flex justify-center gap-2">
         <button data-filter="all" class="cursor-pointer rounded-full border border-slate-300 bg-white px-4 py-1 text-sm font-medium text-slate-700 hover:bg-slate-200">All</button>
         <button data-filter="active" class="cursor-pointer rounded-full border border-slate-300 bg-white px-4 py-1 text-sm font-medium text-slate-700 hover:bg-slate-200">Active</button>
         <button data-filter="completed" class="cursor-pointer rounded-full border border-slate-300 bg-white px-4 py-1 text-sm font-medium text-slate-700 hover:bg-slate-200">Completed</button>
       </div>
+      <p id="task-counter" class="mb-8 text-center text-sm text-blush-300"></p>
     </div>
     <ul id="task-list" class="grid grid-flow-dense grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"></ul>
     </main>
