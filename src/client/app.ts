@@ -147,9 +147,13 @@ function renderTasks(tasks: Task[]): void {
     header.className = "flex items-start gap-3";
     header.append(checkbox, title);
 
+    const date = document.createElement("span");
+    date.textContent = formatDate(task.createdAt);
+    date.className = "text-xs text-blush-300/70";
+
     const footer = document.createElement("div");
     footer.className = "flex items-center justify-between";
-    footer.append(deleteButton);
+    footer.append(date, deleteButton);
 
     item.append(header, footer);
     taskList.appendChild(item);
